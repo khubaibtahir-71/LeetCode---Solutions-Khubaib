@@ -1,0 +1,21 @@
+// find if an integer is a palindrome or not
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        string integer = to_string(x);
+        int i = 0;
+        int size = integer.length(); 
+            while(i <= size/2) {
+                if(integer[i] != integer[size - i - 1]){
+                
+                    return false;
+                }
+                else i++; 
+            }
+        return true;        
+    }
+};
+
+
+// took 0 ms and was at the top in terms of time complexity
