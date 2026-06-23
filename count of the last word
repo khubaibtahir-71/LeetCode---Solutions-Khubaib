@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int lastWordIndex = 0, count = 0;
+        for(int i = 0; i < s.size(); i++){
+            if(s[i] == ' ' && ((s[i+1] >= 97 && s[i+1] <= 122) || (s[i+1] >= 65 && s[i+1] <= 90))) {
+                lastWordIndex = i + 1; 
+            }
+        }
+        int i = lastWordIndex;
+        while(((s[i] >= 65 && s[i] <= 90) || (s[i] >= 97 && s[i] <= 122)) && i < s.size()){
+            count++;
+            i++;
+        }
+        return count;
+    }
+};
+
+//o  m\s runtime beats 100%
