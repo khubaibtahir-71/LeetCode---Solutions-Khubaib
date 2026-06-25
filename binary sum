@@ -1,0 +1,79 @@
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        if(a == "0" && b == "0") return "0";
+        string strTemp = "";
+        if(a.size() < b.size()){
+            strTemp = a;
+            a = b; 
+            b = strTemp;
+        }
+        char temp = '\0';
+        for(int i = 0; i < a.size()/2; i++){
+            temp = a[i];
+            a[i] = a[a.size() - i - 1];
+            a[a.size() - i - 1] = temp; 
+        }
+        for(int i = 0; i < b.size()/2; i++){
+            temp = b[i];
+            b[i] = b[b.size() - i - 1];
+            b[b.size() - i - 1] = temp;
+        }
+        bool carry = false; string sum = "";
+        for(int i = 0; i < b.size(); i++){
+            if(!carry){
+                if((a[i] == '0' && b[i] == '1') || (a[i] == '1' && b[i] == '0')) sum += '1';
+                else if(a[i] == '0' && b[i] == '0') sum += '0';
+                else if(a[i] == '1' && b[i] == '1') {
+                    carry = true;
+                    sum += '0';
+                }
+            }
+            else {
+                if(a[i] == '0' && b[i] == '0'){
+                    sum += '1';
+                    carry = false; 
+
+                }
+                else if((a[i] == '0' && b[i] == '1') || (a[i] == '1' && b[i] == '0')) sum += '0'; 
+                else if(a[i] == '1' && b[i] == '1') sum += '1';
+            }
+        }
+        for(int i = b.size(); i < a.size(); i++){
+            if(carry){
+                if(a[i] == '1') sum += '0';
+                else if(a[i] == '0') {
+                    carry = false;
+                    sum += '1';
+                }
+            }
+            else {
+                sum += a[i];
+            }
+        }
+        if(carry) sum += '1'; 
+        temp = '\0';
+        for(int i = 0; i < sum.size()/2; i++){
+            temp = sum[i];
+            sum[i] = sum[sum.size() - 1 - i];
+            sum[sum.size() - 1 - i] = temp; 
+        }
+        return sum; 
+    }
+};
+
+
+
+//sum binary strings,  i am trying to limit AI usage and training my brain to actually technological problem solving. The problem was i am 4 hours into this problem and am exhausted. I first tried the approach to convert the strings to integers, adding them and then converting them back to binary string. it worked nicely for ordinary test case but the whole thing visualizing doing by paper then programming a heuristic for that but it could'nt solve the larger binary as their integers were simply too big then i spent 30 mins on the problem trying to get stuff in scope but to no avail, i went out did some arrands and cameback an hour later. learnt how to do it by hand, developed a pseudocode algorithim but i was too tried to correctly implement it as c++ code. Still proud i did it with miminal AI help and didn't give up 
+
+
+// 0 m/s runtime
+
+
+
+
+
+
+
+
+
